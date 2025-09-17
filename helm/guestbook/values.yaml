@@ -1,0 +1,17 @@
+replicaCount: 4
+
+image:
+  repository: gcr.io/google-samples/gb-frontend
+  tag: v5
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: null   # defaults to port when null
+
+
+fullnameOverride: "guestbook"
+
+env: []       # e.g., [{ name: APP_MODE, value: "prod" }]
+resources: {} # add CPU/memory here
