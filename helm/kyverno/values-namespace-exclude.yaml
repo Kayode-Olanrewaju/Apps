@@ -1,20 +1,17 @@
-# values-excludes.yaml
 config:
-  # IMPORTANT: webhooks expects a JSON string (not a YAML object)
-  webhooks: >-
-    [{"namespaceSelector":{"matchExpressions":[
-      {"key":"kubernetes.io/metadata.name","operator":"NotIn",
-       "values":["kyverno","kube-system","argocd"]}
-    ]}}]
-
-  # Optional belt-and-suspenders: Kyverno ignores these namespaces even if a review reaches it
+  webhooks:
+    - namespaceSelector:
+        matchExpressions:
+          - key: kubernetes.io/metadata.name
+            operator: NotIn
+            values:
+              - kyverno
+              - kube-system
+              - argocd
+              - monitoring
+              - ingress-nginx
+              - cert-manager
+              - cloudflare
   resourceFilters:
     - "[*,*,status]"
-    - "[*,kyverno,*]"
-    - "[*,kube-system,*]"
-    - "[*,argocd,*]"
-    - "[*,monitoring,*]"
-    - "[*,ingress-nginx,*]"
-    - "[*,cert-manager,*]"
-    - "[*,cloudflare,*]"
 
