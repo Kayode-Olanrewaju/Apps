@@ -1,17 +1,13 @@
 config:
-  webhooks:
-    - namespaceSelector:
-        matchExpressions:
-          - key: kubernetes.io/metadata.name
-            operator: NotIn
-            values:
-              - kyverno
-              - kube-system
-              - argocd
-              - monitoring
-              - ingress-nginx
-              - cert-manager
-              - cloudflare
   resourceFilters:
     - "[*,*,status]"
+    - "[*,kyverno,*]"
+    - "[*,kube-system,*]"
+    - "[*,argocd,*]"
+    - "[*,ingress-nginx,*]"
+    - "[*,monitoring,*]"
+    - "[*,cert-manager,*]"
+    - "[*,cloudflare,*]"
+
+
 
